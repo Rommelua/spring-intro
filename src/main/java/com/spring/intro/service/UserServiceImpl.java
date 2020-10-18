@@ -1,9 +1,8 @@
 package com.spring.intro.service;
 
 import com.spring.intro.dao.UserDao;
-import java.util.List;
 import com.spring.intro.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
