@@ -2,6 +2,7 @@ package com.spring.intro.service;
 
 import com.spring.intro.dao.UserDao;
 import com.spring.intro.model.User;
+import com.spring.intro.model.UserResponseDto;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +22,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> listUsers() {
         return userDao.listUsers();
+    }
+
+    @Override
+    public UserResponseDto getUserResponseDto(Long id) {
+        return userDao.getUserResponseDto(id);
     }
 }

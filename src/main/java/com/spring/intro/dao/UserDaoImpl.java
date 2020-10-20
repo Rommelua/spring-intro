@@ -1,6 +1,7 @@
 package com.spring.intro.dao;
 
 import com.spring.intro.model.User;
+import com.spring.intro.model.UserResponseDto;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -42,6 +43,15 @@ public class UserDaoImpl implements UserDao {
         try (Session session = sessionFactory.openSession()) {
             Query<User> query = session.createQuery("from User", User.class);
             return query.getResultList();
+        }
+    }
+
+    @Override
+    public UserResponseDto getUserResponseDto(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            User user = session.load(User.class, id);
+            UserResponseDto dto = new UserResponseDto(id, user.getEmail());
+            return dto;
         }
     }
 }
