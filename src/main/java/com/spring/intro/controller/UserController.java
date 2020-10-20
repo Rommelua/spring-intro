@@ -1,7 +1,7 @@
 package com.spring.intro.controller;
 
+import com.spring.intro.dto.UserResponseDto;
 import com.spring.intro.model.User;
-import com.spring.intro.model.UserResponseDto;
 import com.spring.intro.service.UserService;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,13 +30,18 @@ public class UserController {
 
     @GetMapping("/{userId}")
     public UserResponseDto get(@PathVariable Long userId) {
-        return userService.getUserResponseDto(userId);
+        User user = userService.getById(userId);
+        return convertUserToDto(user);
     }
 
-    @GetMapping("/")
+    @GetMapping()
     public List<UserResponseDto> getAll() {
         return userService.listUsers().stream()
-                .map(user -> new UserResponseDto(user.getId(), user.getEmail()))
+                .map(this::convertUserToDto)
                 .collect(Collectors.toList());
+    }
+
+    private UserResponseDto convertUserToDto(User user) {
+        return new UserResponseDto(user.getId(), user.getEmail());
     }
 }

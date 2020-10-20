@@ -1,7 +1,6 @@
 package com.spring.intro.dao;
 
 import com.spring.intro.model.User;
-import com.spring.intro.model.UserResponseDto;
 import java.util.List;
 
 public interface UserDao {
@@ -9,5 +8,5 @@ public interface UserDao {
 
     List<User> listUsers();
 
-    UserResponseDto getUserResponseDto(Long id);
+    User getById(Long id);
 }
