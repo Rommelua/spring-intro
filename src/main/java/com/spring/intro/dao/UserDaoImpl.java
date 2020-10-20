@@ -48,7 +48,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getById(Long id) {
         try (Session session = sessionFactory.openSession()) {
-            return session.load(User.class, id);
+            return session.get(User.class, id);
         }
     }
 }
