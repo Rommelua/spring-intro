@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    private UserService userService;
+    private final UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -34,7 +34,7 @@ public class UserController {
         return convertUserToDto(user);
     }
 
-    @GetMapping()
+    @GetMapping
     public List<UserResponseDto> getAll() {
         return userService.listUsers().stream()
                 .map(this::convertUserToDto)
